@@ -1,0 +1,54 @@
+#
+#           Linux output
+#
+
+chunk.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <.text>:
+   0:	48 c7 c0 01 00 00 00 	mov    rax,0x1
+   7:	48 c7 c7 01 00 00 00 	mov    rdi,0x1
+   e:	48 8d 35 0a 00 00 00 	lea    rsi,[rip+0xa]        # 0x1f
+  15:	48 c7 c2 11 00 00 00 	mov    rdx,0x11
+  1c:	0f 05                	syscall
+  1e:	c3                   	ret
+  1f:	48                   	rex.W
+  20:	65 6c                	gs ins BYTE PTR es:[rdi],dx
+  22:	6c                   	ins    BYTE PTR es:[rdi],dx
+  23:	6f                   	outs   dx,DWORD PTR ds:[rsi]
+  24:	2c 20                	sub    al,0x20
+  26:	59                   	pop    rcx
+  27:	6f                   	outs   dx,DWORD PTR ds:[rsi]
+  28:	75 72                	jne    0x9c
+  2a:	20 4e 61             	and    BYTE PTR [rsi+0x61],cl
+  2d:	6d                   	ins    DWORD PTR es:[rdi],dx
+  2e:	65 0a 00             	or     al,BYTE PTR gs:[rax]
+
+
+#
+#           macOS output
+#
+
+chunk.o:	file format Mach-O 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+__text:
+       0:	48 c7 c0 01 00 00 00 	mov	rax, 1
+       7:	48 c7 c7 01 00 00 00 	mov	rdi, 1
+       e:	48 8d 35 0a 00 00 00 	lea	rsi, [rip + 10]
+      15:	48 c7 c2 11 00 00 00 	mov	rdx, 17
+      1c:	0f 05 	syscall
+      1e:	c3 	ret
+      1f:	48 65 	gs
+      21:	6c 	insb	byte ptr es:[rdi], dx
+      22:	6c 	insb	byte ptr es:[rdi], dx
+      23:	6f 	outsd	dx, dword ptr [rsi]
+      24:	2c 20 	sub	al, 32
+      26:	59 	pop	rcx
+      27:	6f 	outsd	dx, dword ptr [rsi]
+      28:	75 72 	jne	114 <__text+0x9C>
+      2a:	20 4e 61 	and	byte ptr [rsi + 97], cl
+      2d:	6d 	insd	dword ptr es:[rdi], dx
+      2e:	65 0a 00 	or	al, byte ptr gs:[rax]
