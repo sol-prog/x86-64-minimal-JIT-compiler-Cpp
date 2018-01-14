@@ -16,7 +16,7 @@ struct MemoryPages {
     MemoryPages(size_t pages_requested = 1) {
         page_size = sysconf(_SC_PAGE_SIZE); // Get the machine page size
         mem = (uint8_t*) mmap(NULL, page_size * pages_requested, PROT_READ | PROT_WRITE | PROT_EXEC, MAP_PRIVATE | MAP_ANONYMOUS ,-1, 0);
-        if(!mem) {
+        if(mem == MAP_FAILED) {
             throw std::runtime_error("Can't allocate enough executable memory!");
         }
         pages = pages_requested;

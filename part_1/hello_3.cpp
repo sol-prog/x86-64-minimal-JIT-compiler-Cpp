@@ -51,7 +51,7 @@ int main() {
     size_t required_memory_size = estimate_memory_size(machine_code.size());
 
     uint8_t *mem = (uint8_t*) mmap(NULL, required_memory_size, PROT_READ | PROT_WRITE | PROT_EXEC, MAP_PRIVATE | MAP_ANONYMOUS ,-1, 0);
-    if(!mem) {
+    if(mem == MAP_FAILED) {
         std::cerr << "Can't allocate memory\n"; std::exit(1);
     }
 
