@@ -11,5 +11,5 @@ int main() {
     std::string hello_name = "Hello, " + name + "!\n";
 
     // Greet the user
-    write(STDIN_FILENO, (const void *) hello_name.c_str(), hello_name.size());
+    write(STDOUT_FILENO, (const void *) hello_name.c_str(), hello_name.size());
 }
